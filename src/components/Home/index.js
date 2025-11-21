@@ -2,6 +2,7 @@ import {Component} from 'react'
 import {MdClose} from 'react-icons/md'
 import {AiOutlineSearch} from 'react-icons/ai'
 import Loader from 'react-loader-spinner'
+import Cookies from 'js-cookie'
 import Header from '../Header'
 import SideBar from '../SideBar'
 import ThemeContext from '../../context/ThemeContext'
@@ -35,6 +36,7 @@ class Home extends Component {
     bannerDisplay: true,
     searchInputValue: '',
     apiStatus: apiStatusConstants.initial,
+    videosList: [],
   }
 
   componentDidMount() {
@@ -45,6 +47,40 @@ class Home extends Component {
     this.setState({
       apiStatus: apiStatusConstants.inProgress,
     })
+    const jwtToken = Cookies.get('jwt_token')
+    const {searchInputValue} = this.state
+    const apiUrl = `https://apis.ccbp.in/videos/all?search=${searchInputValue}`
+    const options = {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+      method: 'GET',
+    }
+    try {
+      const response = await fetch(apiUrl, options)
+      const data = await response.json()
+      if (response.ok) {
+        const formattedData = data.videos.map(eachVideo => ({
+          channel: {
+            name: eachVideo.channel.name,
+            profileImageUrl: eachVideo.channel.profile_image_url,
+          },
+          id: eachVideo.id,
+          title: eachVideo.title,
+          thumbnailUrl: eachVideo.thumbnail_url,
+          viewCount: eachVideo.view_count,
+          publishedAt: eachVideo.published_at,
+        }))
+        this.setState({
+          videosList: formattedData,
+          apiStatus: apiStatusConstants.success,
+        })
+      }
+    } catch {
+      this.setState({
+        apiStatus: apiStatusConstants.failure,
+      })
+    }
   }
 
   handleSearch = event => {
@@ -66,6 +102,8 @@ class Home extends Component {
     })
   }
 
+  renderVideosListView = () => <p>Success View</p>
+
   renderLoadingView = () => (
     <LoaderContainer className="loader-container" data-testid="loader">
       <Loader type="ThreeDots" color="#3b82f6" height="50" width="50" />
@@ -77,6 +115,8 @@ class Home extends Component {
     switch (apiStatus) {
       case apiStatusConstants.inProgress:
         return this.renderLoadingView()
+      case apiStatusConstants.success:
+        return this.renderVideosListView()
       default:
         return null
     }
