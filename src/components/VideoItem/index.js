@@ -1,5 +1,4 @@
 import {formatDistanceToNow} from 'date-fns'
-import {BsDot} from 'react-icons/bs'
 import {
   VideoListItem,
   VideoThumbnail,
@@ -9,10 +8,11 @@ import {
   VideoTitle,
   StatsContainer,
   ChannelName,
-  ViewsStats,
-  ViewsDot,
-  VideoViews,
-  DotContainer,
+  ViewsPublishStats,
+  Stats,
+  Dot,
+  PublishDot,
+  ViewsCount,
 } from './styledComponents'
 
 const VideoItem = props => {
@@ -32,16 +32,16 @@ const VideoItem = props => {
           <VideoTitle>{title}</VideoTitle>
           <StatsContainer>
             <ChannelName>{name}</ChannelName>
-            <ViewsStats>
-              <ViewsDot>
-                <BsDot styled={{width: '100%', height: '100'}} size={20} />
-                <VideoViews>{viewCount} views</VideoViews>
-              </ViewsDot>
-              <DotContainer>
-                <BsDot styled={{width: '100%', height: '100'}} size={20} />
-                <VideoViews>{publishedYear} ago</VideoViews>
-              </DotContainer>
-            </ViewsStats>
+            <ViewsPublishStats>
+              <Stats>
+                <Dot />
+                <ViewsCount>{viewCount} views</ViewsCount>
+              </Stats>
+              <Stats>
+                <PublishDot />
+                <ViewsCount>{publishedYear} ago</ViewsCount>
+              </Stats>
+            </ViewsPublishStats>
           </StatsContainer>
         </TitleStatsContainer>
       </VideoItemDescription>

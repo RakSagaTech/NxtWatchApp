@@ -115,6 +115,9 @@ export const VideosListContainer = styled.div`
   min-height: 100%;
   background-color: ${props =>
     props.theme === 'Light' ? '#f9f9f9' : '#181818'};
+  @media screen and (min-width: 576px) {
+    padding: 18px;
+  }
   @media screen and (min-width: 768px) {
     padding: 20px;
   }
@@ -133,9 +136,14 @@ export const SearchInputContainer = styled.div`
   margin-right: 16px;
   border: ${props =>
     props.theme === 'Light' ? '0.5px solid #cccccc' : '0.2px solid #606060'};
+  @media screen and (min-width: 576px) {
+    height: 28px;
+    width: 450px;
+    margin: 0px;
+  }
   @media screen and (min-width: 768px) {
     height: 28px;
-    width: 250px;
+    width: 280px;
     margin: 0px;
   }
   @media screen and (min-width: 968px) {
@@ -218,6 +226,10 @@ export const VideosList = styled.ul`
   flex-wrap: wrap;
   list-style-type: none;
   background-color: transparent;
+  @media screen and (min-width: 576px) {
+    flex-direction: row;
+    margin-top: 20px;
+  }
   @media screen and (min-width: 768px) {
     flex-direction: row;
     margin-top: 20px;

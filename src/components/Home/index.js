@@ -87,6 +87,10 @@ class Home extends Component {
           videosList: formattedData,
           apiStatus: apiStatusConstants.success,
         })
+      } else {
+        this.setState({
+          apiStatus: apiStatusConstants.failure,
+        })
       }
     } catch {
       this.setState({
