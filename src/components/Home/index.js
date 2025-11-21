@@ -5,6 +5,7 @@ import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 import Header from '../Header'
 import SideBar from '../SideBar'
+import VideoItem from '../VideoItem'
 import ThemeContext from '../../context/ThemeContext'
 
 import {
@@ -22,6 +23,12 @@ import {
   SearchInput,
   SearchButton,
   LoaderContainer,
+  VideosList,
+  SearchResultView,
+  SearchResultImg,
+  SearchHeading,
+  SearchDescription,
+  SearchRetryButton,
 } from './styledComponents'
 
 const apiStatusConstants = {
@@ -87,13 +94,19 @@ class Home extends Component {
     const searchValue = event.target.value
     this.setState({searchInputValue: searchValue}, () => {
       if (searchValue === '') {
-        this.fetchVideosDetails()
+        this.fetchVideoListsData()
       }
     })
   }
 
   handleSearchClick = () => {
-    this.fetchVideosDetails()
+    this.fetchVideoListsData()
+  }
+
+  handleKeyDown = event => {
+    if (event.key === 'Enter') {
+      this.fetchVideoListsData()
+    }
   }
 
   handleClose = () => {
@@ -102,7 +115,42 @@ class Home extends Component {
     })
   }
 
-  renderVideosListView = () => <p>Success View</p>
+  renderSearchResultView = () => (
+      <ThemeContext.Consumer>
+        {value => {
+          const {theme} = value
+          return (
+            <SearchResultView theme={theme}>
+              <SearchResultImg
+                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+                alt="failure"
+              />
+              <SearchHeading theme={theme}>
+                No Search results found
+              </SearchHeading>
+              <SearchDescription theme={theme}>
+                Try different key words or remove search filter
+              </SearchDescription>
+              <SearchRetryButton type="button">Retry</SearchRetryButton>
+            </SearchResultView>
+          )
+        }}
+      </ThemeContext.Consumer>
+    )
+
+  renderVideosListView = () => {
+    const {videosList} = this.state
+    if (videosList.length === 0) {
+      return this.renderSearchResultView()
+    }
+    return (
+      <VideosList>
+        {videosList.map(eachVideo => (
+          <VideoItem key={eachVideo.id} videoDetails={eachVideo} />
+        ))}
+      </VideosList>
+    )
+  }
 
   renderLoadingView = () => (
     <LoaderContainer className="loader-container" data-testid="loader">

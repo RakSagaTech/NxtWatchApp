@@ -209,3 +209,99 @@ export const LoaderContainer = styled.div`
   justify-content: center;
   align-items: center;
 `
+
+export const VideosList = styled.ul`
+  padding-left: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  list-style-type: none;
+  background-color: transparent;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    margin-top: 20px;
+  }
+  @media screen and (min-width: 968px) {
+    flex-direction: row;
+    margin-top: 30px;
+  }
+`
+
+export const SearchResultView = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center:
+  align-items: center;
+  align-self: center;
+  height: 100%;
+  width: 100%;
+  padding: 40px;
+`
+
+export const SearchResultImg = styled.img`
+  width: 200px;
+  align-self: center;
+  @media screen and (min-width: 768px) {
+    width: 250px;
+  }
+  @media screen and (min-width: 968px) {
+    width: 300px;
+  }
+`
+
+export const SearchHeading = styled.h1`
+  font-family: 'Roboto';
+  font-size: 18px;
+  align-self: center;
+  margin-top: 30px;
+  color: ${props => (props.theme === 'Light' ? '#181818' : '#ffffff')};
+  font-weight: 500;
+  @media screen and (min-width: 768px) {
+    font-size: 19px;
+  }
+  @media screen and (min-width: 968px) {
+    font-size: 22px;
+  }
+  @media screen and (min-width: 1200px) {
+    font-size: 24px;
+  }
+`
+
+export const SearchDescription = styled.p`
+  font-family: 'Roboto';
+  font-size: 20px;
+  align-self: center;
+  text-align: center;
+  font-size: 16px;
+  margin: 0px;
+  line-height: 1.6;
+  color: ${props => (props.theme === 'Light' ? '#616e7c' : '#94a3b8')};
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    width: 90%;
+  }
+  @media screen and (min-width: 968px) {
+    font-size: 17px;
+    width: 75%;
+  }
+  @media screen and (min-width: 1200px) {
+    font-size: 19px;
+    width: 59%;
+  }
+`
+
+export const SearchRetryButton = styled.button`
+  font-family: 'Roboto';
+  align-self: center;
+  background-color: #4f46e5;
+  font-size: 12px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 13px 32px;
+  margin-top: 20px;
+  border-radius: 4px;
+  color: #ffffff;
+  font-weight: bold;
+`
