@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import {MdClose} from 'react-icons/md'
 import {AiOutlineSearch} from 'react-icons/ai'
+import Loader from 'react-loader-spinner'
 import Header from '../Header'
 import SideBar from '../SideBar'
 import ThemeContext from '../../context/ThemeContext'
@@ -19,12 +20,31 @@ import {
   SearchInputContainer,
   SearchInput,
   SearchButton,
+  LoaderContainer,
 } from './styledComponents'
+
+const apiStatusConstants = {
+  initial: 'INITIAL',
+  inProgress: 'IN_PROGRESS',
+  success: 'SUCCESS',
+  failure: 'FAILURE',
+}
 
 class Home extends Component {
   state = {
     bannerDisplay: true,
     searchInputValue: '',
+    apiStatus: apiStatusConstants.initial,
+  }
+
+  componentDidMount() {
+    this.fetchVideoListsData()
+  }
+
+  fetchVideoListsData = async () => {
+    this.setState({
+      apiStatus: apiStatusConstants.inProgress,
+    })
   }
 
   handleSearch = event => {
@@ -44,6 +64,22 @@ class Home extends Component {
     this.setState({
       bannerDisplay: false,
     })
+  }
+
+  renderLoadingView = () => (
+    <LoaderContainer className="loader-container" data-testid="loader">
+      <Loader type="ThreeDots" color="#3b82f6" height="50" width="50" />
+    </LoaderContainer>
+  )
+
+  renderVideosView = () => {
+    const {apiStatus} = this.state
+    switch (apiStatus) {
+      case apiStatusConstants.inProgress:
+        return this.renderLoadingView()
+      default:
+        return null
+    }
   }
 
   render() {
@@ -91,6 +127,7 @@ class Home extends Component {
                         <AiOutlineSearch size={16} />
                       </SearchButton>
                     </SearchInputContainer>
+                    {this.renderVideosView()}
                   </VideosListContainer>
                 </HomeBannerVideos>
               </HomeContent>
