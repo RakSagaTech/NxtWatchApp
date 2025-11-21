@@ -29,6 +29,11 @@ import {
   SearchHeading,
   SearchDescription,
   SearchRetryButton,
+  FailureView,
+  FailureImg,
+  FailureHeading,
+  FailureDescription,
+  FailureRetryButton,
 } from './styledComponents'
 
 const apiStatusConstants = {
@@ -115,6 +120,30 @@ class Home extends Component {
     })
   }
 
+  renderFailureView = () => (
+      <ThemeContext.Consumer>
+        {value => {
+          const {theme} = value
+          return (
+            <FailureView>
+              <FailureImg
+                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
+                alt="no videos"
+              />
+              <FailureHeading theme={theme}>
+                Oops! Something Went Wrong
+              </FailureHeading>
+              <FailureDescription theme={theme}>
+                We are having some trouble to complete your request. Please try
+                again.
+              </FailureDescription>
+              <FailureRetryButton type="button">Retry</FailureRetryButton>
+            </FailureView>
+          )
+        }}
+      </ThemeContext.Consumer>
+    )
+
   renderSearchResultView = () => (
       <ThemeContext.Consumer>
         {value => {
@@ -165,6 +194,8 @@ class Home extends Component {
         return this.renderLoadingView()
       case apiStatusConstants.success:
         return this.renderVideosListView()
+      case apiStatusConstants.failure:
+        return this.renderFailureView()
       default:
         return null
     }

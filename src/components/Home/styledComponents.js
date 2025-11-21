@@ -305,3 +305,81 @@ export const SearchRetryButton = styled.button`
   color: #ffffff;
   font-weight: bold;
 `
+
+export const FailureView = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center:
+  align-items: center;
+  align-self: center;
+  height: 100%;
+  width: 100%;
+  padding: 40px;
+`
+
+export const FailureImg = styled.img`
+  width: 200px;
+  align-self: center;
+  @media screen and (min-width: 768px) {
+    width: 250px;
+  }
+  @media screen and (min-width: 968px) {
+    width: 300px;
+  }
+`
+
+export const FailureHeading = styled.h1`
+  font-family: 'Roboto';
+  font-size: 18px;
+  align-self: center;
+  margin-top: 30px;
+  color: ${props => (props.theme === 'Light' ? '#181818' : '#ffffff')};
+  font-weight: 500;
+  @media screen and (min-width: 768px) {
+    font-size: 19px;
+  }
+  @media screen and (min-width: 968px) {
+    font-size: 22px;
+  }
+  @media screen and (min-width: 1200px) {
+    font-size: 24px;
+  }
+`
+
+export const FailureDescription = styled.p`
+  font-family: 'Roboto';
+  font-size: 20px;
+  align-self: center;
+  text-align: center;
+  font-size: 16px;
+  margin: 0px;
+  line-height: 1.6;
+  color: #616e7c;
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    width: 90%;
+  }
+  @media screen and (min-width: 968px) {
+    font-size: 17px;
+    width: 75%;
+  }
+  @media screen and (min-width: 1200px) {
+    font-size: 19px;
+    width: 59%;
+  }
+`
+
+export const FailureRetryButton = styled.button`
+  font-family: 'Roboto';
+  align-self: center;
+  background-color: #4f46e5;
+  font-size: 12px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 13px 32px;
+  margin-top: 20px;
+  border-radius: 4px;
+  color: #ffffff;
+  font-weight: bold;
+`
