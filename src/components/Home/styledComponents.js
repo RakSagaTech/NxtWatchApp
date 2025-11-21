@@ -55,16 +55,19 @@ export const BannerNxtWatchLogo = styled.img`
 
 export const BannerText = styled.p`
   font-family: 'Roboto';
-  font-size: 19px;
+  font-size: 16px;
   line-height: 1.6;
   color: #1e293b;
   width: 80%;
   margin-bottom: 30px;
   font-weight: 400;
+  @media screen and (min-width: 576px) {
+    font-size: 18px;
+    width: 60%;
+  }
   @media screen and (min-width: 768px) {
     font-size: 17px;
     width: 92%;
-    font-weight: 500;
   }
 `
 export const GetItButton = styled.button`
@@ -103,5 +106,97 @@ export const CloseButton = styled.button`
   @media screen and (min-width: 768px) {
     width: 34px;
     height: 34px;
+  }
+`
+
+export const VideosListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background-color: ${props =>
+    props.theme === 'Light' ? '#f9f9f9' : '#181818'};
+  @media screen and (min-width: 768px) {
+    padding: 20px;
+  }
+  @media screen and (min-width: 968px) {
+    padding: 30px;
+  }
+`
+
+export const SearchInputContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 32px;
+  margin-top: 14px;
+  margin-left: 16px;
+  margin-right: 16px;
+  border: ${props =>
+    props.theme === 'Light' ? '0.5px solid #cccccc' : '0.2px solid #606060'};
+  @media screen and (min-width: 768px) {
+    height: 28px;
+    width: 250px;
+    margin: 0px;
+  }
+  @media screen and (min-width: 968px) {
+    height: 30px;
+    width: 330px;
+    margin: 0px;
+  }
+  @media screen and (min-width: 1200px) {
+    height: 32px;
+    width: 430px;
+    margin: 0px;
+  }
+  @media screen and (min-width: 1580px) {
+    height: 34px;
+    width: 780px;
+    margin: 0px;
+  }
+`
+
+export const SearchInput = styled.input`
+  font-family: 'Roboto';
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #606060;
+  background-color: ${props =>
+    props.theme === 'Light' ? '#f1f5f9' : '#181818'};
+  padding: 10px 14px;
+
+  @media screen and (min-width: 968px) {
+    font-size: 16px;
+  }
+`
+
+export const SearchButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0px 28px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-left: ${props =>
+    props.theme === 'Light' ? '2px solid #cccccc' : '2px solid #606060'};
+  color: #606060;
+  background-color: ${props =>
+    props.theme === 'Light' ? '#f9f9f9' : '#313131'};
+  @media screen and (min-width: 768px) {
+    padding: 0px 18px;
+  }
+  @media screen and (min-width: 968px) {
+    padding: 0px 22px;
+  }
+  @media screen and (min-width: 1200px) {
+    padding: 0px 26px;
+  }
+  @media screen and (min-width: 1580px) {
+    padding: 0px 46px;
   }
 `
