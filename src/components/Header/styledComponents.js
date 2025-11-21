@@ -31,15 +31,14 @@ export const HeaderContent = styled.div`
 
 export const HeaderNxtWatchLogo = styled.img`
   width: 106px;
-  @media screen and (min-width: 768px){
-  width: 120px;
-}
+  @media screen and (min-width: 768px) {
+    width: 120px;
+  }
   @media screen and (min-width: 968px) {
     width: 126px;
   }
   @media screen and (min-width: 1200px) {
     width: 132px;
- 
   }
 `
 
