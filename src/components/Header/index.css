@@ -11,19 +11,16 @@
   }
 }
 
-
 .popup-text {
   font-family: 'Roboto';
   font-size: 16px;
   color: #00306e;
 }
 
-
 .buttons-container {
   display: flex;
   align-items: center;
 }
-
 
 .button {
   font-size: 16px;
@@ -31,7 +28,6 @@
   border-radius: 3px;
   font-weight: bold;
 }
-
 
 .cancel-button {
   margin: 18px;
@@ -42,7 +38,6 @@
   padding: 10px 14px;
 }
 
-
 .confirm-button {
   color: white;
   margin: 18px;
@@ -51,5 +46,3 @@
   outline: none;
   padding: 12px 14px;
 }
-
-
