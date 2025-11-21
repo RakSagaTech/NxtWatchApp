@@ -28,7 +28,6 @@ const Header = props => {
     <ThemeContext.Consumer>
       {value => {
         const {theme, changeTheme} = value
-        console.log(theme)
         const headerLogo =
           theme === 'Light'
             ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'

@@ -264,11 +264,14 @@ export const SearchResultImg = styled.img`
 
 export const SearchHeading = styled.h1`
   font-family: 'Roboto';
-  font-size: 18px;
+  font-size: 20px;
   align-self: center;
   margin-top: 30px;
   color: ${props => (props.theme === 'Light' ? '#181818' : '#ffffff')};
   font-weight: 500;
+  @media screen and (min-width: 576px) {
+    font-size: 19px;
+  }
   @media screen and (min-width: 768px) {
     font-size: 19px;
   }
@@ -289,6 +292,10 @@ export const SearchDescription = styled.p`
   margin: 0px;
   line-height: 1.6;
   color: ${props => (props.theme === 'Light' ? '#616e7c' : '#94a3b8')};
+  @media screen and (min-width: 576px) {
+    font-size: 14px;
+    width: 60%;
+  }
   @media screen and (min-width: 768px) {
     font-size: 14px;
     width: 90%;
@@ -347,8 +354,11 @@ export const FailureHeading = styled.h1`
   margin-top: 30px;
   color: ${props => (props.theme === 'Light' ? '#181818' : '#ffffff')};
   font-weight: 500;
+  @media screen and (min-width: 576px) {
+    font-size: 23px;
+  }
   @media screen and (min-width: 768px) {
-    font-size: 19px;
+    font-size: 21px;
   }
   @media screen and (min-width: 968px) {
     font-size: 22px;
@@ -360,15 +370,19 @@ export const FailureHeading = styled.h1`
 
 export const FailureDescription = styled.p`
   font-family: 'Roboto';
-  font-size: 20px;
+  font-size: 15px;
+  width: 100%;
   align-self: center;
   text-align: center;
-  font-size: 16px;
   margin: 0px;
   line-height: 1.6;
   color: #616e7c;
+  @media screen and (min-width: 576px) {
+    font-size: 22px;
+    width: 90%;
+  }
   @media screen and (min-width: 768px) {
-    font-size: 14px;
+    font-size: 17px;
     width: 90%;
   }
   @media screen and (min-width: 968px) {

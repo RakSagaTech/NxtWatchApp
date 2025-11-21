@@ -71,7 +71,7 @@ export const VideoTitle = styled.h1`
   margin-bottom: 4px;
   font-weight: 400;
   width: 100%;
-  color: #181818;
+  color: ${props => (props.theme === 'Light' ? '#181818' : '#ffffff')};
   @media screen and (min-width: 576px) {
     font-size: 14px;
   }
@@ -102,7 +102,7 @@ export const ChannelName = styled.p`
   margin: 0px;
   font-weight: 400;
   font-size: 12px;
-  color: #475569;
+  color: ${props => (props.theme === 'Light' ? '#475569' : '#616e7c')};
   margin-top: 4px;
   @media screen and (min-width: 576px) {
     font-size: 13px;
@@ -144,7 +144,8 @@ export const Dot = styled.div`
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background-color: #606060;
+  background-color: ${props =>
+    props.theme === 'Light' ? '#606060' : '#616e7c'};
   marign: 0px 10px 0px 6px;
   @media screen and (min-width: 576px) {
     display: none;
@@ -155,8 +156,8 @@ export const ViewsCount = styled.span`
   font-size: 12px;
   color: #616e7c;
   margin-left: 6px;
-  color: #475569;
   font-family: 'Roboto';
+  color: ${props => (props.theme === 'Light' ? '#475569' : '#616e7c')};
   @media screen and (min-width: 576px) {
     margin: 0px;
     font-size: 13px;
@@ -179,8 +180,9 @@ export const PublishDot = styled.div`
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background-color: #606060;
-  marign: 0px 10px 0px 6px;
+  margin: 0px 4px 0px 4px;
+  background-color: ${props =>
+    props.theme === 'Light' ? '#606060' : '#616e7c'};
   @media screen and (min-width: 576px) {
     margin-right: 8px;
   }

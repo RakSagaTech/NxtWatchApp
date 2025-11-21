@@ -1,4 +1,5 @@
 import {formatDistanceToNow} from 'date-fns'
+import ThemeContext from '../../context/ThemeContext'
 import {
   VideoListItem,
   VideoThumbnail,
@@ -24,28 +25,35 @@ const VideoItem = props => {
   const publishedYearList = formattedPublishedYear.split(' ')
   const publishedYear = ` ${publishedYearList[1]} ${publishedYearList[2]}`
   return (
-    <VideoListItem>
-      <VideoThumbnail src={thumbnailUrl} />
-      <VideoItemDescription>
-        <ProfileImg src={profileImageUrl} alt="profile" />
-        <TitleStatsContainer>
-          <VideoTitle>{title}</VideoTitle>
-          <StatsContainer>
-            <ChannelName>{name}</ChannelName>
-            <ViewsPublishStats>
-              <Stats>
-                <Dot />
-                <ViewsCount>{viewCount} views</ViewsCount>
-              </Stats>
-              <Stats>
-                <PublishDot />
-                <ViewsCount>{publishedYear} ago</ViewsCount>
-              </Stats>
-            </ViewsPublishStats>
-          </StatsContainer>
-        </TitleStatsContainer>
-      </VideoItemDescription>
-    </VideoListItem>
+    <ThemeContext.Consumer>
+      {value => {
+        const {theme} = value
+        return (
+          <VideoListItem>
+            <VideoThumbnail src={thumbnailUrl} />
+            <VideoItemDescription>
+              <ProfileImg src={profileImageUrl} alt="profile" />
+              <TitleStatsContainer>
+                <VideoTitle theme={theme}>{title}</VideoTitle>
+                <StatsContainer>
+                  <ChannelName theme={theme}>{name}</ChannelName>
+                  <ViewsPublishStats>
+                    <Stats>
+                      <Dot theme={theme} />
+                      <ViewsCount theme={theme}>{viewCount} views</ViewsCount>
+                    </Stats>
+                    <Stats>
+                      <PublishDot theme={theme} />
+                      <ViewsCount theme={theme}>{publishedYear} ago</ViewsCount>
+                    </Stats>
+                  </ViewsPublishStats>
+                </StatsContainer>
+              </TitleStatsContainer>
+            </VideoItemDescription>
+          </VideoListItem>
+        )
+      }}
+    </ThemeContext.Consumer>
   )
 }
 

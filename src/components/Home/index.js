@@ -99,6 +99,10 @@ class Home extends Component {
     }
   }
 
+  handleRetry = () => {
+    this.fetchVideoListsData()
+  }
+
   handleSearch = event => {
     const searchValue = event.target.value
     this.setState({searchInputValue: searchValue}, () => {
@@ -125,51 +129,53 @@ class Home extends Component {
   }
 
   renderFailureView = () => (
-      <ThemeContext.Consumer>
-        {value => {
-          const {theme} = value
-          return (
-            <FailureView>
-              <FailureImg
-                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
-                alt="no videos"
-              />
-              <FailureHeading theme={theme}>
-                Oops! Something Went Wrong
-              </FailureHeading>
-              <FailureDescription theme={theme}>
-                We are having some trouble to complete your request. Please try
-                again.
-              </FailureDescription>
-              <FailureRetryButton type="button">Retry</FailureRetryButton>
-            </FailureView>
-          )
-        }}
-      </ThemeContext.Consumer>
-    )
+    <ThemeContext.Consumer>
+      {value => {
+        const {theme} = value
+        return (
+          <FailureView>
+            <FailureImg
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
+              alt="no videos"
+            />
+            <FailureHeading theme={theme}>
+              Oops! Something Went Wrong
+            </FailureHeading>
+            <FailureDescription theme={theme}>
+              We are having some trouble to complete your request. Please try
+              again.
+            </FailureDescription>
+            <FailureRetryButton type="button" onClick={this.handleRetry}>
+              Retry
+            </FailureRetryButton>
+          </FailureView>
+        )
+      }}
+    </ThemeContext.Consumer>
+  )
 
   renderSearchResultView = () => (
-      <ThemeContext.Consumer>
-        {value => {
-          const {theme} = value
-          return (
-            <SearchResultView theme={theme}>
-              <SearchResultImg
-                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
-                alt="failure"
-              />
-              <SearchHeading theme={theme}>
-                No Search results found
-              </SearchHeading>
-              <SearchDescription theme={theme}>
-                Try different key words or remove search filter
-              </SearchDescription>
-              <SearchRetryButton type="button">Retry</SearchRetryButton>
-            </SearchResultView>
-          )
-        }}
-      </ThemeContext.Consumer>
-    )
+    <ThemeContext.Consumer>
+      {value => {
+        const {theme} = value
+        return (
+          <SearchResultView theme={theme}>
+            <SearchResultImg
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+              alt="failure"
+            />
+            <SearchHeading theme={theme}>No Search results found</SearchHeading>
+            <SearchDescription theme={theme}>
+              Try different key words or remove search filter
+            </SearchDescription>
+            <SearchRetryButton type="button" onClick={this.handleRetry}>
+              Retry
+            </SearchRetryButton>
+          </SearchResultView>
+        )
+      }}
+    </ThemeContext.Consumer>
+  )
 
   renderVideosListView = () => {
     const {videosList} = this.state
