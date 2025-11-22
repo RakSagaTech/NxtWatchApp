@@ -4,6 +4,12 @@ export const VideoListItem = styled.li`
   display: flex;
   flex-direction: column;
   width: 100%;
+  @media screen and (min-width: 576px) {
+    width: 48.5%;
+  }
+  @media screen and (min-width: 768px) {
+    width: 32%;
+  }
 `
 
 export const VideoThumbnail = styled.img`

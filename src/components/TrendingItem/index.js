@@ -17,8 +17,6 @@ import {
   TrendingViewsCount,
 } from './styledComponents'
 
-import './index.css'
-
 const TrendingItem = props => {
   const {trendingDetails} = props
   const {
@@ -39,7 +37,7 @@ const TrendingItem = props => {
       {value => {
         const {theme} = value
         return (
-          <Link to={`/videos/${id}`} className="nav-link">
+          <Link to={`/videos/${id}`} style={{textDecoration: 'none'}}>
             <TrendingListItem>
               <TrendingThumbnail src={thumbnailUrl} />
               <TrendingItemDescription>

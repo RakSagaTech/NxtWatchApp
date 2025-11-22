@@ -130,6 +130,7 @@ export const TrendingList = styled.ul`
   background-color: transparent;
   @media screen and (min-width: 576px) {
     margin-top: 10px;
+    width: 100%;
   }
   @media screen and (min-width: 768px) {
     padding: 10px 0px 10px 20px;

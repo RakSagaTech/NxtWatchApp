@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import {AiFillHome} from 'react-icons/ai'
 import {HiFire} from 'react-icons/hi'
 import {SiYoutubegaming} from 'react-icons/si'
@@ -19,25 +20,31 @@ import {
   ContactDescription,
 } from './styledComponents'
 
+import './index.css'
+
 const menuOptions = [
   {
     id: 'HOME',
     label: 'Home',
+    path: '/',
     Icon: AiFillHome,
   },
   {
     id: 'TRENDING',
     label: 'Trending',
+    path: '/trending',
     Icon: HiFire,
   },
   {
     id: 'GAMING',
     label: 'Gaming',
+    path: '/gaming',
     Icon: SiYoutubegaming,
   },
   {
     id: 'SAVED_VIDEOS',
     label: 'Saved videos',
+    path: '/saved-videos',
     Icon: MdPlaylistAdd,
   },
 ]
@@ -60,24 +67,26 @@ const SideBar = () => (
                 <OptionsContact>
                   <MenuList theme={theme}>
                     {menuOptions.map(eachOption => {
-                      const {id, label, Icon} = eachOption
+                      const {id, label, path, Icon} = eachOption
                       const isActive = eachOption.id === activeMenuId
                       return (
                         <MenuItem key={id}>
-                          <MenuButton
-                            type="button"
-                            isActive={isActive}
-                            theme={theme}
-                            onClick={() => changeMenu(id)}
-                          >
-                            <Icon
-                              size={17}
-                              color={getIconColor(isActive, theme)}
-                            />
-                            <MenuLabel isActive={isActive} theme={theme}>
-                              {label}
-                            </MenuLabel>
-                          </MenuButton>
+                          <Link to={path} className="sidebar-link">
+                            <MenuButton
+                              type="button"
+                              isActive={isActive}
+                              theme={theme}
+                              onClick={() => changeMenu(id)}
+                            >
+                              <Icon
+                                size={17}
+                                color={getIconColor(isActive, theme)}
+                              />
+                              <MenuLabel isActive={isActive} theme={theme}>
+                                {label}
+                              </MenuLabel>
+                            </MenuButton>
+                          </Link>
                         </MenuItem>
                       )
                     })}
