@@ -216,6 +216,8 @@ export const LoaderContainer = styled.div`
   width: 100%;
   justify-content: center;
   align-items: center;
+  background-color: ${props =>
+    props.theme === 'Light' ? '#f9f9f9' : '#0f0f0f'};
 `
 
 export const VideosList = styled.ul`
@@ -224,18 +226,18 @@ export const VideosList = styled.ul`
   flex-direction: column;
   justify-content: space-between;
   flex-wrap: wrap;
+  flex-grow: 1;
   list-style-type: none;
+  width: 100%;
   background-color: transparent;
   @media screen and (min-width: 576px) {
     flex-direction: row;
     margin-top: 20px;
   }
   @media screen and (min-width: 768px) {
-    flex-direction: row;
     margin-top: 20px;
   }
   @media screen and (min-width: 968px) {
-    flex-direction: row;
     margin-top: 30px;
   }
 `

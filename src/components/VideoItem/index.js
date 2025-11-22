@@ -16,6 +16,7 @@ import {
   PublishDot,
   ViewsCount,
 } from './styledComponents'
+import './index.css'
 
 const VideoItem = props => {
   const {videoDetails} = props
@@ -37,8 +38,8 @@ const VideoItem = props => {
       {value => {
         const {theme} = value
         return (
-          <VideoListItem>
-            <Link to={`/videos/${id}`}>
+          <Link to={`/videos/${id}`} className="nav-link">
+            <VideoListItem>
               <VideoThumbnail src={thumbnailUrl} />
               <VideoItemDescription>
                 <ProfileImg src={profileImageUrl} alt="profile" />
@@ -61,8 +62,8 @@ const VideoItem = props => {
                   </StatsContainer>
                 </TitleStatsContainer>
               </VideoItemDescription>
-            </Link>
-          </VideoListItem>
+            </VideoListItem>
+          </Link>
         )
       }}
     </ThemeContext.Consumer>

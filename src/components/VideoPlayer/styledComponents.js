@@ -296,6 +296,8 @@ export const LoaderContainer = styled.div`
   width: 100%;
   justify-content: center;
   align-items: center;
+  background-color: ${props =>
+    props.theme === 'Light' ? '#f9f9f9' : '#0f0f0f'};
 `
 
 export const FailureView = styled.div`

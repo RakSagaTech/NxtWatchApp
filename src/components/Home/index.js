@@ -132,12 +132,13 @@ class Home extends Component {
     <ThemeContext.Consumer>
       {value => {
         const {theme} = value
+        const failureImg =
+          theme === 'Light'
+            ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
+            : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
         return (
           <FailureView>
-            <FailureImg
-              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
-              alt="no videos"
-            />
+            <FailureImg src={failureImg} alt="no videos" />
             <FailureHeading theme={theme}>
               Oops! Something Went Wrong
             </FailureHeading>
@@ -192,9 +193,20 @@ class Home extends Component {
   }
 
   renderLoadingView = () => (
-    <LoaderContainer className="loader-container" data-testid="loader">
-      <Loader type="ThreeDots" color="#3b82f6" height="50" width="50" />
-    </LoaderContainer>
+    <ThemeContext.Consumer>
+      {value => {
+        const {theme} = value
+        return (
+          <LoaderContainer
+            className="loader-container"
+            data-testid="loader"
+            theme={theme}
+          >
+            <Loader type="ThreeDots" color="#3b82f6" height="50" width="50" />
+          </LoaderContainer>
+        )
+      }}
+    </ThemeContext.Consumer>
   )
 
   renderVideosView = () => {

@@ -2,8 +2,8 @@ import {Component} from 'react'
 import {Switch, Route} from 'react-router-dom'
 import LoginForm from './components/LoginForm'
 import Home from './components/Home'
+import Trending from './components/Trending'
 import VideoPlayer from './components/VideoPlayer'
-
 import ThemeContext from './context/ThemeContext'
 import MenuContext from './context/MenuContext'
 
@@ -43,6 +43,7 @@ class App extends Component {
             <Route exact path="/login" component={LoginForm} />
             <Route exact path="/" component={Home} />
             <Route exact path="/videos/:id" component={VideoPlayer} />
+            <Route exact path="/trending" component={Trending} />
           </Switch>
         </MenuContext.Provider>
       </ThemeContext.Provider>
