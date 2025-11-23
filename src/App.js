@@ -3,6 +3,7 @@ import {Switch, Route} from 'react-router-dom'
 import LoginForm from './components/LoginForm'
 import Home from './components/Home'
 import Trending from './components/Trending'
+import Gaming from './components/Gaming'
 import VideoPlayer from './components/VideoPlayer'
 import ThemeContext from './context/ThemeContext'
 import MenuContext from './context/MenuContext'
@@ -44,6 +45,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/videos/:id" component={VideoPlayer} />
             <Route exact path="/trending" component={Trending} />
+            <Route exact path="/gaming" component={Gaming} />
           </Switch>
         </MenuContext.Provider>
       </ThemeContext.Provider>
