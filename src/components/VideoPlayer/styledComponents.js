@@ -76,6 +76,7 @@ export const VideoPlayerStats = styled.div`
   @media screen and (min-width: 768px) {
     flex-direction: row;
     justify-content: space-between;
+
     align-items: center;
   }
 `

@@ -8,6 +8,7 @@ import ReactPlayer from 'react-player'
 import Header from '../Header'
 import SideBar from '../SideBar'
 import ThemeContext from '../../context/ThemeContext'
+import SaveContext from '../../context/SaveContext'
 
 import {
   VideoHeader,
@@ -52,6 +53,8 @@ class VideoPlayer extends Component {
   state = {
     apiStatus: apiStatusConstants.initial,
     videoObject: {},
+    isLiked: false,
+    isDisliked: false,
   }
 
   componentDidMount() {
@@ -140,6 +143,18 @@ class VideoPlayer extends Component {
     </ThemeContext.Consumer>
   )
 
+  handleLike = () => {
+    this.setState(prevState => ({
+      isLiked: !prevState.isLiked,
+    }))
+  }
+
+  handleDislike = () => {
+    this.setState(prevState => ({
+      isDisliked: !prevState.isDisliked,
+    }))
+  }
+
   renderVideoView = () => {
     const {videoObject} = this.state
     const {
@@ -157,63 +172,81 @@ class VideoPlayer extends Component {
     const publishedYear = ` ${publishedYearList[1]} ${publishedYearList[2]}`
     return (
       <ThemeContext.Consumer>
-        {value => {
-          const {theme} = value
+        {themeValue => {
+          const {theme} = themeValue
           return (
-            <VideoContainer theme={theme}>
-              <VideoPlayerContainer>
-                <ReactPlayer url={videoUrl} width="100%" height="100%" />
-              </VideoPlayerContainer>
-              <VideoPlayerDescription>
-                <VideoPlayerTitle theme={theme}>{title}</VideoPlayerTitle>
-                <VideoPlayerStats>
-                  <ViewsSubscribers>
-                    <VideoPlayerViews theme={theme}>
-                      {viewCount} views
-                    </VideoPlayerViews>
-                    <VideoPlayerPublished>
-                      <VideoPlayerDot />
-                      <VideoPlayerPublish theme={theme}>
-                        {publishedYear} ago
-                      </VideoPlayerPublish>
-                    </VideoPlayerPublished>
-                  </ViewsSubscribers>
-                  <LikeDisLikeSave>
-                    <Button theme={theme}>
-                      <Icon>
-                        <BiLike style={{width: '100%', height: '100%'}} />
-                      </Icon>
-                      <ButtonName>Like</ButtonName>
-                    </Button>
-                    <Button theme={theme}>
-                      <Icon>
-                        <BiDislike style={{width: '100%', height: '100%'}} />
-                      </Icon>
-                      <ButtonName>Dislike</ButtonName>
-                    </Button>
-                    <Button theme={theme}>
-                      <Icon>
-                        <MdPlaylistAdd
-                          style={{width: '100%', height: '100%'}}
-                        />
-                      </Icon>
-                      <ButtonName>Save</ButtonName>
-                    </Button>
-                  </LikeDisLikeSave>
-                </VideoPlayerStats>
-                <HorizontalLine theme={theme} />
-                <ProfileChannel>
-                  <ProfileImage src={profileImageUrl} />
-                  <ChannelSubscriber>
-                    <ChannelName theme={theme}>{name}</ChannelName>
-                    <Subscriber theme={theme}>
-                      {subscriberCount} subscribers
-                    </Subscriber>
-                  </ChannelSubscriber>
-                </ProfileChannel>
-                <Description theme={theme}>{description}</Description>
-              </VideoPlayerDescription>
-            </VideoContainer>
+            <SaveContext.Consumer>
+              {saveValue => {
+                const {handleSave, savedVideosList} = saveValue
+                const isSaved = savedVideosList.find(
+                  each => each.id === videoObject.id,
+                )
+                return (
+                  <VideoContainer theme={theme}>
+                    <VideoPlayerContainer>
+                      <ReactPlayer url={videoUrl} width="100%" height="100%" />
+                    </VideoPlayerContainer>
+                    <VideoPlayerDescription>
+                      <VideoPlayerTitle theme={theme}>{title}</VideoPlayerTitle>
+                      <VideoPlayerStats>
+                        <ViewsSubscribers>
+                          <VideoPlayerViews theme={theme}>
+                            {viewCount} views
+                          </VideoPlayerViews>
+                          <VideoPlayerPublished>
+                            <VideoPlayerDot />
+                            <VideoPlayerPublish theme={theme}>
+                              {publishedYear} ago
+                            </VideoPlayerPublish>
+                          </VideoPlayerPublished>
+                        </ViewsSubscribers>
+                        <LikeDisLikeSave>
+                          <Button theme={theme} onClick={this.handleLike}>
+                            <Icon>
+                              <BiLike style={{width: '100%', height: '100%'}} />
+                            </Icon>
+                            <ButtonName>Like</ButtonName>
+                          </Button>
+                          <Button theme={theme} onClick={this.handleDislike}>
+                            <Icon>
+                              <BiDislike
+                                style={{width: '100%', height: '100%'}}
+                              />
+                            </Icon>
+                            <ButtonName>Dislike</ButtonName>
+                          </Button>
+                          <Button
+                            theme={theme}
+                            type="button"
+                            onClick={() => handleSave(videoObject)}
+                          >
+                            <Icon>
+                              <MdPlaylistAdd
+                                style={{width: '100%', height: '100%'}}
+                              />
+                            </Icon>
+                            <ButtonName>
+                              {isSaved ? 'Saved' : 'Save'}
+                            </ButtonName>
+                          </Button>
+                        </LikeDisLikeSave>
+                      </VideoPlayerStats>
+                      <HorizontalLine theme={theme} />
+                      <ProfileChannel>
+                        <ProfileImage src={profileImageUrl} />
+                        <ChannelSubscriber>
+                          <ChannelName theme={theme}>{name}</ChannelName>
+                          <Subscriber theme={theme}>
+                            {subscriberCount} subscribers
+                          </Subscriber>
+                        </ChannelSubscriber>
+                      </ProfileChannel>
+                      <Description theme={theme}>{description}</Description>
+                    </VideoPlayerDescription>
+                  </VideoContainer>
+                )
+              }}
+            </SaveContext.Consumer>
           )
         }}
       </ThemeContext.Consumer>
